@@ -23,7 +23,6 @@ public class Persona {
     private Sesso sesso;
 
     @OneToMany(mappedBy = "persona")
-    @OrderBy("")
     private List<Partecipazione> partecipazioni;
 
     public Persona() {

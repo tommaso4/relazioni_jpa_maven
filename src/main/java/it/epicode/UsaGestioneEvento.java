@@ -1,33 +1,27 @@
 package it.epicode;
 
-import it.epicode.dao.EventoDAO;
-import it.epicode.dao.LocationDao;
-import it.epicode.dao.PartecipazioneDao;
-import it.epicode.dao.PersonaDao;
-import it.epicode.entities.Evento;
-import it.epicode.entities.Location;
-import it.epicode.entities.Partecipazione;
-import it.epicode.entities.Persona;
+import it.epicode.dao.*;
+import it.epicode.entities.*;
+
+import java.util.List;
 
 public class UsaGestioneEvento {
 
     public static void main(String[] args) {
         EventoDAO eventoDao = new EventoDAO();
-        LocationDao locationDao = new LocationDao();
+//        LocationDao locationDao = new LocationDao();
         PersonaDao personaDao = new PersonaDao();
-        PartecipazioneDao partecipazioneDao = new PartecipazioneDao();
+//        PartecipazioneDao partecipazioneDao = new PartecipazioneDao();
 
 //        Persona p1 = new Persona();
 //        p1.setNome("Carlo");
 //        p1.setCognome("Re");
-
-//        Persona p2 = personaDao.getById(2);
 //
-//        //Persona p2 = new Persona();
+//        Persona p2 = new Persona();
 //        p2.setNome("Carlo");
 //        p2.setCognome("Re");
-
-     //   personaDao.save(p2);
+//
+//        personaDao.save(p1);
 //        personaDao.save(p2);
 //
 //        Location location = new Location();
@@ -62,10 +56,64 @@ public class UsaGestioneEvento {
 //        partecipazioneDao.save(pa2);
 //        partecipazioneDao.save(pa3);
 
-        Evento e = eventoDao.getById(1);
+        Persona p1 = personaDao.getById(1);
+        System.out.println(p1);
+        Persona p2 = personaDao.getById(1);
+        System.out.println(p2);
 
-        eventoDao.delete(e);
+//        Concerto concerto1 = new Concerto();
+//        concerto1.setGenere(ETypeConcerto.POP);
+//        concerto1.setStreaming(false);
+//        Concerto concerto2 = new Concerto();
+//        concerto2.setGenere(ETypeConcerto.POP);
+//        concerto2.setStreaming(true);
+//
+//        eventoDao.save(concerto1);
+//        eventoDao.save(concerto2);
 
+        List<Concerto> concerti= eventoDao.getConcertoByGenere(ETypeConcerto.POP);
+        concerti.forEach(concerto -> System.out.println(concerto));
 
+        System.out.println("-----------------------------");
+        List<Concerto> concerti2 = eventoDao.getConsertsByStreaming(false);
+        concerti2.forEach(concerto -> System.out.println(concerto));
+
+        PartitaDiCalcio partitaDiCalcio1 = new PartitaDiCalcio();
+        partitaDiCalcio1.setGolCasa(3);
+        partitaDiCalcio1.setGolOspite(4);
+        partitaDiCalcio1.setSquadraDiCasa("A");
+        partitaDiCalcio1.setSquadraOspite("B");
+        partitaDiCalcio1.setVincitore("B");
+        PartitaDiCalcio partitaDiCalcio2 = new PartitaDiCalcio();
+        partitaDiCalcio2.setGolCasa(3);
+        partitaDiCalcio2.setGolOspite(4);
+        partitaDiCalcio2.setSquadraDiCasa("A");
+        partitaDiCalcio2.setSquadraOspite("B");
+        partitaDiCalcio2.setVincitore("B");
+        PartitaDiCalcio partitaDiCalcio3 = new PartitaDiCalcio();
+        partitaDiCalcio3.setGolCasa(4);
+        partitaDiCalcio3.setGolOspite(3);
+        partitaDiCalcio3.setSquadraDiCasa("A");
+        partitaDiCalcio3.setSquadraOspite("B");
+        partitaDiCalcio3.setVincitore("A");
+        PartitaDiCalcio partitaDiCalcio4 = new PartitaDiCalcio();
+        partitaDiCalcio4.setGolCasa(4);
+        partitaDiCalcio4.setGolOspite(3);
+        partitaDiCalcio4.setSquadraDiCasa("A");
+        partitaDiCalcio4.setSquadraOspite("B");
+        partitaDiCalcio4.setVincitore(null);
+//
+//        eventoDao.save(partitaDiCalcio1);
+//        eventoDao.save(partitaDiCalcio2);
+ //      eventoDao.save(partitaDiCalcio4);
+
+        List<PartitaDiCalcio> vinteInCasa = eventoDao.getPartiteVinteInCasa();
+        vinteInCasa.forEach(partitaDiCalcio -> System.out.println(partitaDiCalcio));
+
+        List<PartitaDiCalcio> vinteFuoriCasa = eventoDao.getPartiteVinteFuoriCasa();
+        vinteFuoriCasa.forEach(partitaDiCalcio -> System.out.println(partitaDiCalcio));
+
+        List<PartitaDiCalcio> vintePareggiata = eventoDao.getPartitePareggiate();
+        vintePareggiata.forEach(partitaDiCalcio -> System.out.println(partitaDiCalcio));
     }
 }
