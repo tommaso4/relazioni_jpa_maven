@@ -3,15 +3,17 @@ package it.epicode;
 import it.epicode.dao.*;
 import it.epicode.entities.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public class UsaGestioneEvento {
 
     public static void main(String[] args) {
         EventoDAO eventoDao = new EventoDAO();
-//        LocationDao locationDao = new LocationDao();
+        LocationDao locationDao = new LocationDao();
         PersonaDao personaDao = new PersonaDao();
-//        PartecipazioneDao partecipazioneDao = new PartecipazioneDao();
+        PartecipazioneDao partecipazioneDao = new PartecipazioneDao();
 
 //        Persona p1 = new Persona();
 //        p1.setNome("Carlo");
@@ -58,7 +60,7 @@ public class UsaGestioneEvento {
 
         Persona p1 = personaDao.getById(1);
         System.out.println(p1);
-        Persona p2 = personaDao.getById(1);
+        Persona p2 = personaDao.getById(102);
         System.out.println(p2);
 
 //        Concerto concerto1 = new Concerto();
@@ -71,7 +73,7 @@ public class UsaGestioneEvento {
 //        eventoDao.save(concerto1);
 //        eventoDao.save(concerto2);
 
-        List<Concerto> concerti= eventoDao.getConcertoByGenere(ETypeConcerto.POP);
+        List<Concerto> concerti = eventoDao.getConcertoByGenere(ETypeConcerto.POP);
         concerti.forEach(concerto -> System.out.println(concerto));
 
         System.out.println("-----------------------------");
@@ -105,7 +107,7 @@ public class UsaGestioneEvento {
 //
 //        eventoDao.save(partitaDiCalcio1);
 //        eventoDao.save(partitaDiCalcio2);
- //      eventoDao.save(partitaDiCalcio4);
+        //      eventoDao.save(partitaDiCalcio4);
 
         List<PartitaDiCalcio> vinteInCasa = eventoDao.getPartiteVinteInCasa();
         vinteInCasa.forEach(partitaDiCalcio -> System.out.println(partitaDiCalcio));
@@ -115,5 +117,31 @@ public class UsaGestioneEvento {
 
         List<PartitaDiCalcio> vintePareggiata = eventoDao.getPartitePareggiate();
         vintePareggiata.forEach(partitaDiCalcio -> System.out.println(partitaDiCalcio));
+
+
+
+
+//        GaraDiAtletica g1 = new GaraDiAtletica();
+//        p1.getGare().add(g1);
+//        eventoDao.save(g1);
+//
+//        Persona persona = new Persona();
+//        persona.setNome("Mario");
+//        persona.setGare(Set.of(g1));
+//        persona.setGareVinte(List.of(g1));
+//        personaDao.save(persona);
+
+//        GaraDiAtletica g1 = (GaraDiAtletica) eventoDao.getById(602);
+
+//        g1.setVincitore(p1);
+        GaraDiAtletica g2 = (GaraDiAtletica) eventoDao.getById(652);
+//        g2.setAtleti(Set.of(p1,p2));
+//        g2.setVincitore(p1);
+//        eventoDao.save(g2);
+        Persona p5 = personaDao.getById(152);
+        System.out.println(p5);
+        System.out.println(g2);
+
+
     }
 }

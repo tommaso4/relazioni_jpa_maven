@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "persona")
@@ -12,6 +13,12 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @OneToMany(mappedBy = "vincitore")
+    private List<GaraDiAtletica> gareVinte;
+    @ManyToMany
+    @JoinTable(name = "persone_gare",joinColumns = @JoinColumn(name = "persone_fk"),
+    inverseJoinColumns = @JoinColumn(name = "gare_fk"))
+    private Set<GaraDiAtletica> gare;
     private String nome;
     private String cognome;
 
@@ -36,6 +43,22 @@ public class Persona {
         this.dataNascita = dataNascita;
         this.sesso = sesso;
         this.partecipazioni = partecipazioni;
+    }
+
+    public List<GaraDiAtletica> getGareVinte() {
+        return gareVinte;
+    }
+
+    public void setGareVinte(List<GaraDiAtletica> gareVinte) {
+        this.gareVinte = gareVinte;
+    }
+
+    public Set<GaraDiAtletica> getGare() {
+        return gare;
+    }
+
+    public void setGare(Set<GaraDiAtletica> gare) {
+        this.gare = gare;
     }
 
     public int getId() {
